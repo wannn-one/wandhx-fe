@@ -1,5 +1,3 @@
-import { HelmetProvider } from 'react-helmet-async'
-import SEO from './components/SEO'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -12,21 +10,18 @@ import { ThemeProvider } from './context/ThemeContext'
 
 function App() {
   return (
-    <HelmetProvider>
-      <ThemeProvider>
-        <main className="font-space bg-white dark:bg-gray-900 text-primary dark:text-white">
-          <SEO />
-          <Header />
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Contact />
-          <Footer />
-        </main>
-      </ThemeProvider>
-    </HelmetProvider>
+    <ThemeProvider>
+      <main className="font-space bg-white dark:bg-gray-900 text-primary dark:text-white">
+        <Header />
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+        <Footer />
+      </main>
+    </ThemeProvider>
   )
 }
 
