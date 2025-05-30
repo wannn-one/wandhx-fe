@@ -31,7 +31,8 @@ const SEO = ({
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="http://wandhx.site/og-image.png" />
+      <meta property="og:image" content="https://wandhx.site/og-image.png" />
+      <meta property='og:image:url' content="https://wandhx.site/og-image.png" />
       <meta property="og:image:secure_url" content="https://wandhx.site/og-image.png" />
       <meta property="og:image:width" content="1905" />
       <meta property="og:image:height" content="856" />
