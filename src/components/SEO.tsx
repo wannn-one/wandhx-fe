@@ -15,7 +15,9 @@ const SEO = ({
   type = "website",
   image = "/og-image.png"
 }: SEOProps) => {
-  const siteUrl = import.meta.env.VITE_SITE_URL;
+  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://wandhx.site';
+  // Ensure absolute URL for og:image
+  const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
   return (
     <Helmet>
@@ -25,17 +27,24 @@ const SEO = ({
       <link rel="canonical" href={siteUrl} />
 
       {/* OpenGraph meta tags */}
+      <meta property="og:site_name" content={name} />
       <meta property="og:url" content={siteUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${siteUrl}${image}`} />
+      <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:image:secure_url" content={ogImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/png" />
 
       {/* Twitter meta tags */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@wandhx" />
+      <meta name="twitter:creator" content="@wandhx" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteUrl}${image}`} />
+      <meta name="twitter:image" content={ogImageUrl} />
 
       {/* Additional meta tags */}
       <meta name="author" content={name} />
