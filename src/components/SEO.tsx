@@ -16,7 +16,6 @@ const SEO = ({
   image = "/og-image.png"
 }: SEOProps) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://wandhx.site';
-  // Ensure absolute URL for og:image
   const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
   return (
@@ -32,10 +31,10 @@ const SEO = ({
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImageUrl} />
-      <meta property="og:image:secure_url" content={ogImageUrl} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image" content="http://wandhx.site/og-image.png" />
+      <meta property="og:image:secure_url" content="https://wandhx.site/og-image.png" />
+      <meta property="og:image:width" content="1905" />
+      <meta property="og:image:height" content="856" />
       <meta property="og:image:type" content="image/png" />
 
       {/* Twitter meta tags */}
