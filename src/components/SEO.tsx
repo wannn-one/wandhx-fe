@@ -1,39 +1,45 @@
 import { Helmet } from 'react-helmet-async';
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  name?: string;
-  type?: string;
-  image?: string;
-}
+const defaultMeta = {
+  title: "Ikhwanul Abiyu | Portfolio",
+  siteName: "Ikhwanul Abiyu",
+  description: "Hi, I'm Ikhwanul Abiyu Dhiyya'ul Haq. A passionate Backend Developer / Computer Vision / IoT Enthusiast. Fresh graduate from Computer Engineering, Institut Teknologi Sepuluh Nopember.",
+  url: 'https://wandhx.site',
+  image: "https://wandhx.site/og-image.png",
+  type: "website",
+};
 
-const SEO = ({ 
-  title = "Ikhwanul Abiyu | Portfolio",
-  description = "Hi, I'm Ikhwanul Abiyu Dhiyya'ul Haq. A passionate Backend Developer / Computer Vision / IoT Enthusiast. Fresh graduate from Computer Engineering, Institut Teknologi Sepuluh Nopember.",
-  name = "Ikhwanul Abiyu",
-  type = "website",
-  image = "/og-image.png"
-}: SEOProps) => {
-  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://wandhx.site';
-  const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+type SeoProps = {
+  templateTitle?: string;
+} & Partial<typeof defaultMeta>;
+
+const SEO = (props: SeoProps) => {
+  const meta = {
+    ...defaultMeta,
+    ...props,
+  };
+
+  // Update title if templateTitle is provided
+  meta.title = props.templateTitle 
+    ? `${props.templateTitle} | ${meta.siteName}`
+    : meta.title;
 
   return (
     <Helmet>
       {/* Basic meta tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={siteUrl} />
+      <title>{meta.title}</title>
+      <meta name="description" content={meta.description} />
+      <link rel="canonical" href={meta.url} />
 
       {/* OpenGraph meta tags */}
-      <meta property="og:site_name" content={name} />
-      <meta property="og:url" content={siteUrl} />
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://wandhx.site/og-image.png" />
-      <meta property='og:image:url' content="https://wandhx.site/og-image.png" />
-      <meta property="og:image:secure_url" content="https://wandhx.site/og-image.png" />
+      <meta property="og:site_name" content={meta.siteName} />
+      <meta property="og:url" content={meta.url} />
+      <meta property="og:type" content={meta.type} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:image" content={meta.image} />
+      <meta property="og:image:url" content={meta.image} />
+      <meta property="og:image:secure_url" content={meta.image} />
       <meta property="og:image:width" content="1905" />
       <meta property="og:image:height" content="856" />
       <meta property="og:image:type" content="image/png" />
@@ -42,12 +48,12 @@ const SEO = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@wandhx" />
       <meta name="twitter:creator" content="@wandhx" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImageUrl} />
+      <meta name="twitter:title" content={meta.title} />
+      <meta name="twitter:description" content={meta.description} />
+      <meta name="twitter:image" content={meta.image} />
 
       {/* Additional meta tags */}
-      <meta name="author" content={name} />
+      <meta name="author" content={meta.siteName} />
       <meta name="keywords" content="Backend Developer, Computer Vision, IoT, Software Engineer, Web Development, Portfolio" />
       
       {/* Favicon */}
